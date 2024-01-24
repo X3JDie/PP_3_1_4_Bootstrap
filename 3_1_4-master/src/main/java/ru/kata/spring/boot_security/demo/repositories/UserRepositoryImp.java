@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class UserRepositoryImp implements UserRepository {
@@ -16,10 +18,10 @@ public class UserRepositoryImp implements UserRepository {
     private EntityManager entityManager;
 
     @Override
-    public List<User> getAllUsers() {
+    public Set<User> getAllUsers() {
         String jpql = "SELECT e FROM User e";
         List<User> users = entityManager.createQuery(jpql, User.class).getResultList();
-        return users;
+        return new HashSet<>(users);
     }
 
     @Override
@@ -32,6 +34,16 @@ public class UserRepositoryImp implements UserRepository {
     public void delete(Long id) {
         User userDelete = entityManager.find(User.class, id);
         entityManager.remove(userDelete);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        entityManager.merge(user);
+    }
+
+    @Override
+    public void createUser(User user) {
+        entityManager.merge(user);
     }
 
     @Override
@@ -68,9 +80,6 @@ public class UserRepositoryImp implements UserRepository {
         return q.getResultList().stream().findFirst().orElse(null);
     }
 
-    @Override
-    public void updateUser(User user) {
-        entityManager.merge(user);
-    }
+
 
 }

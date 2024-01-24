@@ -26,6 +26,8 @@ public interface UserService {
 
     public void updateUser(User user);
 
+    public void createUser(User user);
+
     Role findById(Long id);
 
     void addRole(Role role);

@@ -64,13 +64,19 @@ public class UserServiceImp implements UserService {
         return user;
     }
 
-    @Override
     @Transactional
     public void updateUser(User user) {
+        userRepository.updateUser(passwordCoder(user));
+    }
+
+
+    @Override
+    @Transactional
+    public void createUser(User user) {
         if (user.getId() == null) {
-            userRepository.updateUser(passwordCoder(user));
+            userRepository.createUser(passwordCoder(user));
         } else {
-            userRepository.updateUser(user);
+            userRepository.createUser(user);
         }
     }
 

@@ -5,11 +5,12 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 @Component
 public interface UserRepository {
 
-    List<User> getAllUsers();
+    Set<User> getAllUsers();
 
     User getUserById(Long id);
 
@@ -26,5 +27,7 @@ public interface UserRepository {
     User getUserByLogin(String name);
 
     public void updateUser(User user);
+
+    public void createUser(User user);
 
 }

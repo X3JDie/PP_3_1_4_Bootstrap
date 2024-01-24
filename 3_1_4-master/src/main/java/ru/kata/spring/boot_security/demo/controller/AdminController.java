@@ -44,7 +44,7 @@ public class AdminController {
     @PostMapping()
     public String createUser(@ModelAttribute("user") @Valid User user, @RequestParam("listRoles") Set<Long> roles) {
         user.setRoles(roleService.findByIdRoles(roles));
-        userService.save(user);
+        userService.createUser(user);
         return "redirect:/admin";
     }
 
@@ -66,7 +66,7 @@ public class AdminController {
     }
 
     @PostMapping("/delete")
-    public String delete(@RequestParam("userId") Long id, Model model) {
+    public String deleteUser(@RequestParam("userId") Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "admin";
     }
