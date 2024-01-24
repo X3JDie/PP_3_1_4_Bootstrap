@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.security.UserDetailsImpl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,10 +27,10 @@ public class AddDefaultUsersAndRoles {
 
     public void addDefaultUser() {
         Set<Role> roleSet = new HashSet<>();
-        roleSet.add(userService.findById((long)1));
+        roleSet.add(userService.findById((long) 1));
         Set<Role> roleSet2 = new HashSet<>();
-        roleSet2.add(userService.findById((long)1));
-        roleSet2.add(userService.findById((long)2));
+        roleSet2.add(userService.findById((long) 1));
+        roleSet2.add(userService.findById((long) 2));
         User user1 = new User("user", "user", "first Name", "lastName", "user", roleSet);
         User user2 = new User("admin", "admin", "firstName", "lastName", "admin", roleSet2);
         save(user1);
