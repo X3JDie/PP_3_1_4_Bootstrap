@@ -15,14 +15,19 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String name;
+
     @Column
     private String password;
+
     @Column
     private String first_name;
+
     @Column
     private String last_name;
+
     @Column
     private String mail;
 
@@ -31,22 +36,6 @@ public class User implements UserDetails {
             @JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Collection<Role> roles;
-
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
 
     public User() {
 
@@ -60,7 +49,6 @@ public class User implements UserDetails {
         this.mail = mail;
         this.roles = roles;
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

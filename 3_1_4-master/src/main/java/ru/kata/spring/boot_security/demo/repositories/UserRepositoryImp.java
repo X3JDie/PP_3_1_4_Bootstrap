@@ -16,7 +16,7 @@ public class UserRepositoryImp implements UserRepository {
     private EntityManager entityManager;
 
     @Override
-    public List<User> getAllUsers () {
+    public List<User> getAllUsers() {
         String jpql = "SELECT e FROM User e";
         List<User> users = entityManager.createQuery(jpql, User.class).getResultList();
         return users;
@@ -44,13 +44,14 @@ public class UserRepositoryImp implements UserRepository {
             return null;
         }
     }
+
     @Override
     public void addRole(Role role) {
         entityManager.persist(role);
     }
 
     @Override
-    public void save (User user) {
+    public void save(User user) {
         entityManager.persist(user);
     }
 
@@ -66,6 +67,7 @@ public class UserRepositoryImp implements UserRepository {
         q.setParameter("name", name);
         return q.getResultList().stream().findFirst().orElse(null);
     }
+
     @Override
     public void updateUser(User user) {
         entityManager.merge(user);

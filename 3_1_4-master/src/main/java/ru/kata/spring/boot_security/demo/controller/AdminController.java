@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.controller;
 
+import antlr.BaseAST;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +11,6 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 @Controller
@@ -20,6 +19,7 @@ public class AdminController {
 
     private final UserService userService;
     private final RoleService roleService;
+    private BaseAST passwordEncoder;
 
     @Autowired
     public AdminController(UserService userService, RoleService roleService) {
@@ -44,7 +44,7 @@ public class AdminController {
     @PostMapping()
     public String createUser(@ModelAttribute("user") @Valid User user, @RequestParam("listRoles") Set<Long> roles) {
         user.setRoles(roleService.findByIdRoles(roles));
-        userService.updateUser(user);
+        userService.save(user);
         return "redirect:/admin";
     }
 

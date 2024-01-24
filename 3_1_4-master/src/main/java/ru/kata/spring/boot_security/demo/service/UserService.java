@@ -1,14 +1,12 @@
 package ru.kata.spring.boot_security.demo.service;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
+
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
-@Component
 public interface UserService {
     Set<User> getAllUsers();
 
@@ -16,7 +14,7 @@ public interface UserService {
 
     User getUserById(Long id);
 
-    void delete (Long id);
+    void delete(Long id);
 
     User findByUserName(String name);
 
@@ -26,9 +24,9 @@ public interface UserService {
 
     User passwordCoder(User user);
 
-    public void updateUser (User user);
+    public void updateUser(User user);
 
-    Role findById (Long id);
+    Role findById(Long id);
 
-    void addRole (Role role);
+    void addRole(Role role);
 }
